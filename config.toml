@@ -26,7 +26,7 @@ theme = "hugo-freelancer-theme"
     # - send a dummy email youself to confirm your account
     # - click the confirm link in the email from www.formspree.io
     # - you're done. Happy mailing!
-    email = "your@email.com"
+    email = "aki@hanninen.net"
 
     # Custom assets
 	custom_css = []
@@ -50,11 +50,11 @@ theme = "hugo-freelancer-theme"
         # For more informtion take a look at the README.
         title = "In the Internets"
 
-        [params.portfolio.modal]
-            client = "Client"
-            date = "Date"
-            category = "Category"
-            buttontext = "Close"
+        # [params.portfolio.modal]
+        #     client = "Client"
+        #     date = "Date"
+        #     category = "Category"
+        #     buttontext = "Close"
 
 
     [params.about]
