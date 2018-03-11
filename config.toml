@@ -108,27 +108,27 @@ theme = "hugo-freelancer-theme"
             # CSS class.
             [[params.footer.social.networks]]
                 icon = "fa-github"
-                link = "//github.com/hanninen/"
+                link = "https://github.com/hanninen/"
 
             [[params.footer.social.networks]]
                 icon = "fa-twitter"
-                link=  "//twitter.com.com/hanninen"
+                link=  "https://twitter.com/hanninen"
 
             [[params.footer.social.networks]]
                 icon = "fa-flickr"
-                link=  "//flickr.com/photos/hanninen"
+                link=  "https://flickr.com/photos/hanninen"
 
             [[params.footer.social.networks]]
                 icon = "fa-linkedin"
-                link=  "//fi.linkedin.com/in/akihanninen"
+                link=  "https://fi.linkedin.com/in/akihanninen"
 
             [[params.footer.social.networks]]
                 icon = "fa-facebook"
-                link=  "//www.facebook.com/aki.hanninen"
+                link=  "https://www.facebook.com/aki.hanninen"
 
             [[params.footer.social.networks]]
                 icon = "fa-instagram"
-                link=  "instagram.com/hanninen"
+                link=  "https://instagram.com/hanninen"
 
         [params.footer.credits]
             title = "About hanninen.net"
