@@ -24,7 +24,7 @@ function addToDataSet(err, data) {
 function get_device_id(dev_id, timeValue, timeFormat) {
   data_timeFormat = {
     'days': '1hours',
-    'weeks': '1days',
+    'weeks': '1hours',
     'months': '1days',
     'years': '1weeks'
   };
