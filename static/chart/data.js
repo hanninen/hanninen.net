@@ -59,18 +59,6 @@ function getEntries(timeValue, timeFormat, start, end) {
   dynamodb.query(params, addToDataSet);
 }
 
-function toggleActive(elem) {
-    // get all 'a' elements
-    var a = document.getElementsByClassName('measurement-type');
-    // loop through all 'a' elements
-    for (i = 0; i < a.length; i++) {
-        // Remove the class 'active' if it exists
-        a[i].classList.remove('active')
-    }
-    // add 'active' classs to the element that was clicked
-    listelem = elem.parentNode;
-    listelem.classList.add('active');
-}
 
 function onChangeGraph(range) {
   start = moment(range.start).format('YYYY-MM-DD HH:mm:ss')
@@ -78,10 +66,15 @@ function onChangeGraph(range) {
   getEntries(globalTimeValue, globalTimeFormat, start, end);
 }
 
-function chart(timeValue, timeFormat, elem) {
+function updateChart() {
+  var value = document.getElementById("form-value").value;
+  var range = document.getElementById("form-range").value;
+  chart(value, range, );
+}
+
+function chart(timeValue, timeFormat) {
   globalTimeValue = timeValue;
   globalTimeFormat = timeFormat;
-  toggleActive(elem);
   if (graph2d !== undefined && typeof graph2d.destroy === "function") {
     graph2d.destroy();
     dataset.clear();

@@ -84,22 +84,22 @@
           <div class="container">
             <div class="row">
             <div class="col-lg-2 col-md-12">
-                  <ul id="measurement-types" class="list-group">
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(1, 'hours', this);" class="text-center">1 hour</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(3, 'hours', this);" class="text-center">3 hours</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(6, 'hours', this);" class="text-center">6 hours</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(12, 'hours', this);" class="text-center">12 hours</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(1, 'days', this);" class="text-center">1 day</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(1, 'weeks', this);" class="text-center">1 week</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(1, 'months', this);" class="text-center">1 month</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(3, 'months', this);" class="text-center">3 months</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(6, 'months', this);" class="text-center">6 months</a></li>
-                    <li class="measurement-type list-group-item"><a href="#portfolio" onclick="chart(1, 'years', this);" class="text-center">1 year</a></li>
-                  </ul>
+              <div class="form-group">
+                <label for="form-value">Measurements for</label>
+                <input type="number" name="value" class="form-control" id="form-value" onchange="updateChart()" value="1" />
+                <select name="range" class="form-control" id="form-range" onchange="updateChart()">
+                  <option value="hours">hours</option>
+                  <option value="days">days</option>
+                  <option value="weeks">weeks</option>
+                  <option value="months">months</option>
+                  <option value="years">years</option>
+                </select>
+              </div>
             </div>
+
             <div class="col-lg-10 col-md-12">
               <div id="visualization" />
-                <script>chart(1, 'hours', document.getElementsByClassName('measurement-type')[0].childNodes[0]);</script>
+                <script>updateChart();</script>
             </div>
           </div>
             <div class="row">
