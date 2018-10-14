@@ -4,7 +4,12 @@ var globalTimeValue;
 var globalTimeFormat;
 
 function addToDataSet(err, data) {
-  //console.log(data);
+  group_ids = { 
+    'pi-1': [0, 1],
+    'vsure-2': [2, 3],
+    'vsure-1': [4, 5]
+  }
+  console.log(data);
   ddb_items = [];
   if (err) console.log(err, err.stack); // an error occurred
   else
@@ -12,10 +17,10 @@ function addToDataSet(err, data) {
       ddb_items.push({
         x: entry.msg_timestamp.S.replace(/\.\d{6}/, ''),
         y: parseFloat(entry.temperature.N),
-        group: 0},
+        group: group_ids[entry.device_id.S][0],},
         { x: entry.msg_timestamp.S.replace(/\.\d{6}/, ''),
         y: parseFloat(entry.humidity.N),
-        group: 1});
+        group: group_ids[entry.device_id.S][1],});
     });
     //console.log(ddb_items);
     dataset.add(ddb_items);
@@ -44,19 +49,31 @@ function getEntries(timeValue, timeFormat, start, end) {
   IdentityPoolId: 'eu-west-1:a7e74d08-8957-443b-955b-2cef1e80be3f',
   });
   var dynamodb = new AWS.DynamoDB();
-  var device_id = get_device_id('pi-1', timeValue, timeFormat);
-  var params = {
-    ExpressionAttributeValues: {
-      ":t1": { S: start },
-      ":t2": { S: end },
-      ":id": { S: device_id }
-    },
-    KeyConditionExpression: "device_id = :id AND msg_timestamp BETWEEN :t1 AND :t2",
-    ProjectionExpression: "msg_timestamp, temperature, humidity",
-    TableName: "indoor",
-    ScanIndexForward: false
-  };
-  dynamodb.query(params, addToDataSet);
+
+  devices = document.getElementsByClassName('device_id');
+  selected = [];
+  for (var i = 0; i < devices.length; i++) {
+    if (devices[i].checked) {
+      selected.push(devices[i].value);
+    }
+  }
+
+  selected.forEach(function (device) {
+    console.log(device);
+    var device_id = get_device_id(device, timeValue, timeFormat);
+    var params = {
+      ExpressionAttributeValues: {
+        ":t1": { S: start },
+        ":t2": { S: end },
+        ":id": { S: device_id }
+      },
+      KeyConditionExpression: "device_id = :id AND msg_timestamp BETWEEN :t1 AND :t2",
+      ProjectionExpression: "device_id, msg_timestamp, temperature, humidity",
+      TableName: "indoor",
+      ScanIndexForward: false
+    };
+    dynamodb.query(params, addToDataSet);
+  });
 }
 
 
@@ -80,7 +97,15 @@ function chart(timeValue, timeFormat) {
     dataset.clear();
   }
   var groups = new vis.DataSet();
-  var names = ['relative humidity', 'temperature']
+  var names = [
+    'Living room - relative humidity', 
+    'Living room - temperature',
+    'Downstairs - temperature',
+    'Downstairs - relative humidity',
+    'Upstairs - temperature',
+    'Upstairs - relative humidity'
+
+  ]
 
   groups.add({
     id: 0,
@@ -92,7 +117,7 @@ function chart(timeValue, timeFormat) {
             parametrization: 'centripetal'
         },
         shaded: {
-          enabled: true,
+          enabled: false,
           orientation: "bottom"
         }
   }});
@@ -112,6 +137,71 @@ function chart(timeValue, timeFormat) {
           orientation: "group"
         }
   }});
+
+  groups.add({
+    id: 2,
+    content: names[2],
+    options: {
+        drawPoints: false,
+        interpolation: {
+            enabled: true,
+            parametrization: 'centripetal'
+        },
+        shaded: {
+          enabled: true,
+          groupId: '2',
+          orientation: "group"
+        }
+  }});
+
+  groups.add({
+    id: 3,
+    content: names[3],
+    options: {
+        drawPoints: false,
+        interpolation: {
+            enabled: true,
+            parametrization: 'centripetal'
+        },
+        shaded: {
+          enabled: true,
+          groupId: '3',
+          orientation: "group"
+        }
+  }});
+
+  groups.add({
+    id: 4,
+    content: names[4],
+    options: {
+        drawPoints: false,
+        interpolation: {
+            enabled: true,
+            parametrization: 'centripetal'
+        },
+        shaded: {
+          enabled: true,
+          groupId: '4',
+          orientation: "group"
+        }
+  }});
+
+  groups.add({
+    id: 5,
+    content: names[5],
+    options: {
+        drawPoints: false,
+        interpolation: {
+            enabled: true,
+            parametrization: 'centripetal'
+        },
+        shaded: {
+          enabled: true,
+          groupId: '5',
+          orientation: "group"
+        }
+  }});
+
   var items = [];
   var container = document.getElementById('visualization');
   dataset = new vis.DataSet(items);

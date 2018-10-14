@@ -86,6 +86,24 @@
             <div class="col-lg-2 col-md-12">
               <div class="form-group">
                 <label for="form-value">Measurements for</label>
+                <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="pi-1" class="device_id" onchange="updateChart()">
+                      Living room
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="vsure-2" class="device_id" checked onchange="updateChart()">
+                      Downstairs
+                    </label>
+                  </div>
+                  <div class="checkbox">
+                    <label>
+                      <input type="checkbox" value="vsure-1" class="device_id" onchange="updateChart()">
+                      Upstairs
+                    </label>
+                  </div>
                 <input type="number" name="value" class="form-control" id="form-value" onchange="updateChart()" value="1" />
                 <select name="range" class="form-control" id="form-range" onchange="updateChart()">
                   <option value="hours">hours</option>
