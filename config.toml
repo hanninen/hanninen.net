@@ -40,7 +40,7 @@ theme = "hugo-freelancer-theme"
         # Copy your own image into './static/img/'' if you wish
         image = "profile.png"
         name = "Aki Hänninen"
-        subtitle = "DevOps - Cloud Architect - Software Generalist"
+        subtitle = "DevOps &mdash; Cloud Architect &mdash; Software Generalist"
 
 
     [params.portfolio]

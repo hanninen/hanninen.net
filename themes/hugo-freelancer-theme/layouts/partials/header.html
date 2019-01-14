@@ -7,7 +7,7 @@
                 <div class="intro-text">
                     <span class="name">{{ with .Site.Params.header.name }}{{ . }}{{ end }}</span>
                     <hr class="star-light">
-                    <span class="skills">{{ with .Site.Params.header.subtitle }}{{ . }}{{ end }}</span>
+                    <span class="skills">{{ with .Site.Params.header.subtitle | safeHTML }}{{ . }}{{ end }}</span>
                 </div>
             </div>
         </div>
