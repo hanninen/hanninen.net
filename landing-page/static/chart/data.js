@@ -9,11 +9,13 @@ function addToDataSet(err, data) {
     'vsure-2': [2, 3],
     'vsure-1': [4, 5]
   }
-  console.log(data);
+  //console.log(data);
   ddb_items = [];
+
   if (err) console.log(err, err.stack); // an error occurred
   else
     data.Items.forEach(function(entry) {
+      entry.device_id.S = entry.device_id.S.replace(/-avg-.*/, '');
       ddb_items.push({
         x: entry.msg_timestamp.S.replace(/\.\d{6}/, ''),
         y: parseFloat(entry.temperature.N),
@@ -22,7 +24,7 @@ function addToDataSet(err, data) {
         y: parseFloat(entry.humidity.N),
         group: group_ids[entry.device_id.S][1],});
     });
-    //console.log(ddb_items);
+    // console.log(ddb_items);
     dataset.add(ddb_items);
   };
 
@@ -59,7 +61,7 @@ function getEntries(timeValue, timeFormat, start, end) {
   }
 
   selected.forEach(function (device) {
-    console.log(device);
+    // console.log(device);
     var device_id = get_device_id(device, timeValue, timeFormat);
     var params = {
       ExpressionAttributeValues: {
@@ -216,7 +218,7 @@ function chart(timeValue, timeFormat) {
   graph2d = new vis.Graph2d(container, dataset, groups, options);
   getEntries(timeValue, timeFormat);
   dataset.on('add', function (event, properties, senderId) {
-    //console.log(event, properties, senderId);
+    // console.log(event, properties, senderId);
     graph2d.setData(dataset);
     graph2d.redraw();
   });
