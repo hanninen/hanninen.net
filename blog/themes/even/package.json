@@ -29,5 +29,9 @@
     "webpack": "^4.25.0",
     "webpack-cli": "^3.1.2"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "resolutions": {
+    "tar": "^4.4.2",
+    "set-value": "^3.0.1"
+  }
 }
