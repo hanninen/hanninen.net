@@ -1,20 +1,21 @@
 <div class="container">
   <div class="logo-wrapper">
-  <a href="{{ "/" | relLangURL }}" class="logo">
-    {{- if .Site.Params.logoTitle -}}
+    <a href="{{ "/" | relLangURL }}" class="logo">
+      {{- if .Site.Params.logoTitle -}}
       {{ .Site.Params.logoTitle }}
-    {{- else -}}
+      {{- else -}}
       {{ .Site.Title }}
-    {{- end -}}
-  </a>
-</div>
+      {{- end -}}
+    </a>
+  </div>
 
-<nav class="site-navbar">
-  <ul id="menu" class="menu">
-    {{ range .Site.Menus.main -}}
+  <nav class="site-navbar">
+    <ul id="menu" class="menu">
+      {{ range .Site.Menus.main -}}
       <li class="menu-item">
         <a class="menu-item-link" href="{{ .URL | safeURL }}">{{ .Name }}</a>
       </li>
-    {{- end }}
-  </ul>
-</nav>
+      {{- end }}
+    </ul>
+  </nav>
+</div>

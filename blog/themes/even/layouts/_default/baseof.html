@@ -15,12 +15,13 @@
 </head>
 <body>
   {{ partial "slideout.html" . }}
-  {{ if not .Params.hideHeaderAndFooter -}}
-  <header id="header" class="header">
-      {{ partial "header.html" . }}
-  </header>
-  {{- end }}
   <div class="container" id="mobile-panel">
+    {{ if not .Params.hideHeaderAndFooter -}}
+    <header id="header" class="header">
+        {{ partial "header.html" . }}
+    </header>
+    {{- end }}
+
     <main id="main" class="main">
       <div class="content-wrapper">
         <div id="content" class="content">

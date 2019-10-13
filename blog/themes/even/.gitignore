@@ -2,4 +2,6 @@ node_modules/
 .idea/
 static/dist/*.min.js.map
 static/dist/*.min.css.map
-data/even/assets.json
+static/dist/even.*.min.js
+static/dist/even.*.min.css
+*.iml

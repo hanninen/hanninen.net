@@ -66,13 +66,13 @@ a {
 
 .container {
   margin: 0 auto;
-  width: $global-body-width;
+  // width: $global-body-width;
 }
 
 @include max-screen() {
   .container {
     width: 100%;
-    // box-shadow: -1px -5px 5px $gray;
+    box-shadow: -1px -5px 5px $gray;
   }
 }
 
